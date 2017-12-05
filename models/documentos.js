@@ -1,5 +1,5 @@
-var mongoose 	= require("mongoose");
-var Schema		= mongoose.Schema;
+let mongoose 	= require("mongoose");
+let Schema		= mongoose.Schema;
 
 var documento_schema	= new Schema({
 	title:{type:String, required:true},
@@ -9,6 +9,6 @@ var documento_schema	= new Schema({
 	extension:{type:String, required:true}
 });
 
-var Documento	= mongoose.model("Documento",documento_schema);
+let Documento	= mongoose.model("Documento",documento_schema);
 
 module.exports	= Documento;

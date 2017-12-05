@@ -1,9 +1,9 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
 
+let mongoose = require('./../config/conexion');
+let User = require('./../models/user');
+let Documento = require('./../models/documentos');
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
-});
 
 module.exports = router;

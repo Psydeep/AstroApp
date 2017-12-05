@@ -1,7 +1,9 @@
-var mongoose    = require('mongoose');
-var Schema      = mongoose.Schema;
+let mongoose    = require('mongoose');
+let Schema      = mongoose.Schema;
 
-mongoose.connect('mongodb://<psydeep>:<deathmetalgore>@ds155634.mlab.com:55634/astrodb', {useMongoClient: true});
+mongoose.connect('mongodb://psydeep:deathmetalgore@ds155634.mlab.com:55634/astrodb',{ useMongoClient: true });
+//mongoose.connect("mongodb://127.0.0.1:27017/TeleCableDB");
+
 
 var posibles_valores = ["M","F"];
 
@@ -32,7 +34,7 @@ user_schema.virtual("password_confirmation").get(function(){
 	this.p_c = password;
 });
 
-var User = mongoose.model("User", user_schema);
+let User = mongoose.model("User", user_schema);
 
 module.exports.User = User;
 
