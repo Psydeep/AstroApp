@@ -1,7 +1,7 @@
 var mongoose    = require('mongoose');
 var Schema      = mongoose.Schema;
 
-mongoose.connect("mongodb://127.0.0.1:27017/TeleCableDB");
+mongoose.connect('mongodb://<psydeep>:<deathmetalgore>@ds155634.mlab.com:55634/astrodb', {useMongoClient: true});
 
 var posibles_valores = ["M","F"];
 
