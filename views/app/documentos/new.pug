@@ -1,0 +1,56 @@
+extends ../../layout.pug
+block contenido
+block titulo
+    h1 Gestión de Documentos
+block menu_usuario
+    div(class="menu_user" )
+        div(class="menu_user_container")
+            a(href="/app/" class="enlace")
+                span(class="icon-profile c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Perfil")
+            a(href="/app/documentos/new" class="padding_left enlace")
+                span(class="icon-files-empty c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nuevo Documento")
+            a(href="/app/documentos" class="padding_left enlace")
+                span(class="icon-books c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis Documentos")
+            a(href="/app/publicaciones/new" class="padding_left enlace")
+                span(class="icon-new-tab c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nueva Noticia")
+            a(href="/app/publicaciones" class="padding_left enlace")
+                span(class="icon-newspaper c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis Noticias")
+            a(href="/app/publicaciones/mis_publicaciones" class="padding_left enlace")
+                span(class="icon-sphere c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Ver mis Noticias")
+            form(action="/logout" method="POST" class="display_inline_block padding_left")
+                button(type="submit" id="btn_inicio" value="Cerrar" class="with_30px c_blue icon-exit icon25 no_borders no_background logout" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión")
+block subtitulo1
+    p Nuevo Documento
+block subcontenido1
+    div(class="display_table margin-top row")
+        div(class="form-center display_table_cell b_gris")
+            p(class="c_red margin_top font16") #{error}
+            form(method="POST" action="/app/documentos" style="margin-top:1.5em;" enctype="multipart/form-data")
+                div(class="form-grupo")
+                    label(class="font-Muli light text-comun label-block") Título
+                    input(type="text" name="title" placeholder="Título del documento" class="font-Muli form-control" required)
+                div(class="form-grupo")
+                    label(class="font-Muli light text-comun label-block") Descripción
+                    textarea(name="description" rows="4" cols="50" placeholder="Descripción del documento" class="font-Muli form-control-textarea")
+                div(class="form-grupo")
+                    label(class="font-Muli light text-comun label-block") Archivo Documento
+                    input(id="uploadFile" class="uploadFile font15" placeholder="Elegir Archivo" disabled="disabled")
+                    div(class="fileUpload input_file_upload inputUpload")
+                        span Examinar
+                        input(type="file" id="uploadBtn" name="archive" placeholder="Archivo" class="upload font18" accept="application/msword, application/vnd.ms-excel, application/vnd.ms-powerpoint, text/plain, application/pdf, image/* , .docx" required)
+                script document.getElementById('uploadBtn').onchange = function(){document.getElementById('uploadFile').value = this.value; };
+
+                div(class="form-grupo")
+                    label(class="font-Muli light text-comun label-block") Año
+                    input(type="text" name="age" placeholder="Año del documento" class="font-Muli form-control")
+                div(class="form-grupo form-validacion")
+                    p(class="font-Muli light text-comun label-block") Validación de ingreso  
+                        span(class="icon-lock margin-left icon16 azul")
+                    p(class="font-Muli light text-comun label-block") Contraseña
+                    input(type="password" name="password" placeholder="Contraseña" class="font-Muli form-control" required)
+                div(class="form-grupo text-right")
+                    input(type="submit" value="Guardar" class="font-Muli boton")
+        div(class="form-center display_table_cell padding_left2 no_borders mostrarlogo vertical_align_middle text_align_center")
+            img(class="margin_top50" width="80%" height="70%" src='/public/imgs/LogoAstro_mini.png')
+block _footer
+        

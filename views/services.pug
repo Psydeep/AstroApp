@@ -1,0 +1,14 @@
+extends ./layout.pug
+block contenido
+block titulo
+	h1 Servicios
+
+block subcontenido1
+	div(class="img_container")
+		img(src="public/imgs/LogoAstro.png")
+		div(style="border-bottom: 1px dashed rgba(128, 128, 128, 0.50);" class="margin_top margin-bottom")
+		h2(class="text_align_center") Descarga nuestro Recorrido Virtual aquí
+		div(class="img_container")
+		a(href='/public/AstroTelecableRecorrido.exe' , rel="nofollow" download class="margin_left_auto margin_right_auto input_group  enlace margin_top")
+			span(class="icon-download3 input_group_add icon18 c_blue")
+			input(type="submit" value="Descargar Archivo" class="input_group_input font18")

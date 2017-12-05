@@ -1,0 +1,23 @@
+extends ./layout.pug
+block contenido
+block titulo
+	h2 Bienvenido
+block subtitulo1
+	p Registrate
+block subcontenido1
+	div(class="img_container")
+		form(action="/users" method="POST" class="login_box")
+			div(class="login_box_section")
+				label(for="email") Email
+				input(type="text" name="email" placeholder="Email" class="font-Muli form-control" required)
+			div(class="login_box_section")
+				label(for="password") Contraseña
+				input(type="password" name="password" placeholder="Contraseña" class="font-Muli form-control" required)
+			div(class="login_box_section")
+				label(for="password") Confirma tu contraseña
+				input(type="password" name="password_confirmation" placeholder="Confirma contraseña" class="font-Muli form-control" required)
+			div(class="login_box_section")
+				label(for="username") Nombre de usuario
+				input(type="text" name="username" placeholder="Nombre de usuario" class="font-Muli form-control" required)
+			div(class="login_box_section display_inline_block")
+				input(type="submit" value="Registrarse" class="boton")

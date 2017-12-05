@@ -1,0 +1,22 @@
+extends ./layout.pug
+block contenido
+block titulo
+	h2 Bienvenido
+block subtitulo1
+	p(class="text_align_center") Inicia Sesión
+block subcontenido1
+	div(class="img_container")
+		form(action="/sessions" method="POST" class="login_box")
+			div(class="login_box_section")
+				label(for="email") Email
+				input(type="text" id="useremail" name="email" placeholder="Email" class="font-Muli form-control" required)
+			div(class="login_box_section")
+				label(for="password") Contraseña
+				input(type="password" name="password" placeholder="Contraseña" class="font-Muli form-control" id="password" required)
+			div(class="login_box_section display_inline_block")
+				input(type="submit" id="login-submit" value="Iniciar Sesión" class="boton")
+			div(class="login_box_section text_align_right display_inline_block padding_left150")
+				a(href="/signup" class="text_align_right enlace c_blue") No tengo cuenta
+			p(class="c_red margin_top font16") #{error}
+			p(class="c_blue margin_top font16") #{response}
+		

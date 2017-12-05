@@ -1,0 +1,50 @@
+extends ./layout.pug
+block login
+	div
+		a(href="/login" class="enlace font-Oswald c_blue padding_left icon16") Iniciar Sesión
+		a(href="/signup" class="enlace font-Oswald c_blue padding_left icon16") Registro
+block contenido
+block titulo
+	h2 Bienvenidos
+block subtitulo1
+	p Noticias
+block subcontenido1
+	each publicacion in publicaciones
+		div(class="img_container2 border margin_top padding_top border_radius")
+			h2(class="text_align_left border_bot margin-bottom")  
+				span(class="font_weight_initial") #{publicacion.title}
+			div(class="text_align_center b_gris border_radius padding_control")
+				if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "mp4" & publicacion.extension != "flv" & publicacion.extension !="gif")
+					span(class="icon-image c_blanco icon25 display_block")
+					div(class="img_container2")
+						img(src='/public/publicaciones/' + publicacion._id+'.'+publicacion.extension , class="main_img b_blanco border_radius")
+				if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension !="gif")
+					span(class="icon-tv c_blanco icon25 display_block")
+					div(class="img_container2")
+						video(width="640" height="480"  controls)
+							source(src='/public/publicaciones/' + publicacion._id+'.'+publicacion.extension , type="video/mp4")
+				if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+					span(class="icon-cross icon10 text_transparent")  
+					p(class="text_align_centerI text_transparent display_inline_block font16")  Archivo no visible &nbsp;
+					span(class="icon-cross icon10 text_transparent display_inline_block")
+				if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+					div(class="img_container2")
+						span(class="icon-file-pdf icon100 text_transparent c_blanco")
+							p(class="text_align_centerI text_transparent font16 c_blanco margin_top")  Archivo PDF
+					div(class="img_container2")
+						a(href='/public/publicaciones/'+ publicacion._id+'.'+publicacion.extension , rel="nofollow" download class="input_group margin_left_auto enlace margin_top")
+							span(class="icon-download3 input_group_add icon18 c_blue")
+							input(type="submit" value="Descargar Archivo" class="input_group_input font18")
+				if(publicacion.extension != "txt" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+					div(class="img_container2")
+						span(class="icon-file-word icon100 text_transparent c_blanco")
+						p(class="text_align_centerI text_transparent font16 c_blanco margin_top")  Archivo de Office Word
+					div(class="img_container2")
+						a(href='/public/publicaciones/'+ publicacion._id+'.'+publicacion.extension , rel="nofollow" download class="input_group margin_left_auto enlace margin_top")
+							span(class="icon-download3 input_group_add icon18 c_blue")
+							input(type="submit" value="Descargar Archivo" class="input_group_input font18")
+			p(class="text_align_leftI") Descripción:
+			textarea(readonly class="form-control-textarea font-Muli" rows="4" cols="50") #{publicacion.description}
+			p(class="text_align_rightI font16 text_transparent margin_top") #{publicacion.age}
+
+		div(style="border-bottom: 1px dashed rgba(128, 128, 128, 0.50);" class="margin_top margin-bottom")

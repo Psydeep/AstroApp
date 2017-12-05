@@ -1,0 +1,89 @@
+extends ../../layout.pug
+block contenido
+block titulo
+    h1 Noticias
+block menu_usuario
+    div(class="menu_user" )
+        div(class="menu_user_container")
+            a(href="/app/" class="enlace")
+                span(class="icon-profile c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Perfil")
+            a(href="/app/documentos/new" class="padding_left enlace")
+                span(class="icon-files-empty c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nuevo documento")
+            a(href="/app/documentos" class="padding_left enlace")
+                span(class="icon-books c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis documentos")
+            a(href="/app/publicaciones/new" class="padding_left enlace")
+                span(class="icon-new-tab c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nueva Noticia")
+            a(href="/app/publicaciones" class="padding_left enlace")
+                span(class="icon-newspaper c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis Noticias")
+            a(href="/app/publicaciones/mis_publicaciones" class="padding_left enlace")
+                span(class="icon-sphere c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Ver mis Noticias")
+            form(action="/logout" method="POST" class="display_inline_block padding_left")
+                button(type="submit" id="btn_inicio" value="Cerrar" class="with_30px c_blue icon-exit icon25 no_borders no_background logout" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión")
+block subtitulo1
+    p Mis Noticias
+block subcontenido1
+    div
+        a(href="/app/publicaciones/new" class="enlace c_blue") Nuevo publicacion
+            span(class="icon-file-empty c_blue icon16 padding_left")
+    div(id="publicaciones" class="img_container2 border margin_top padding_top border_radius")
+        for publicacion in publicaciones
+            div(class="b_gris border_radius padding_control")
+                a(href='/app/publicaciones/'+publicacion._id+'', class="c_blue enlace padding_left2")
+                    span(class="icon-forward font18 c_blue enlace")
+                    h2(class="display_inline_block border_bot margin-bottom c_blue" data-toggle="tooltip" data-placement="bottom" title='Ver: '+publicacion.title+'') publicacion: 
+                    span(class="italic font_weight_initial") #{publicacion.title}
+                if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+                    span(class="icon-image c_blanco icon25 display_block")
+                    div(class="img_container2")
+                        img(src='/public/publicaciones/' + publicacion._id+'.'+publicacion.extension , class="main_img b_blanco border_radius")
+                if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png")
+                    span(class="icon-tv c_blanco icon25 display_block")
+                    div(class="img_container2")
+                        video(width="640" height="480" controls)
+                            source(src='/public/publicaciones/' + publicacion._id+'.'+publicacion.extension , type="video/mp4")
+                if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+                    span(class="icon-cross icon10 text_transparent")
+                    p(class="text_align_centerI text_transparent display_inline_block font16")  Archivo no visible &nbsp;
+                    span(class="icon-cross icon10 text_transparent display_inline_block")
+                if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+                    div(class="img_container2")
+                        span(class="icon-file-pdf icon100 text_transparent c_blanco")
+                        p(class="text_align_centerI text_transparent font16 c_blanco margin_top")  Archivo PDF
+                if(publicacion.extension != "txt" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+                    div(class="img_container2")
+                        span(class="icon-file-word icon100 text_transparent c_blanco")
+                        p(class="text_align_centerI text_transparent font16 c_blanco margin_top")  Archivo de Office Word
+                p(class="text_align_leftI c_blanco") Descripción:
+                textarea(readonly class="form-control-textarea font-Muli" rows="4" cols="50") #{publicacion.description}
+                p(class="text_align_rightI font16 c_blanco") Fecha: #{publicacion.age}
+                if(typeof publicacion.creator != "undefined")
+                    p(class="text_align_right font16 c_blanco") Por: #{publicacion.creator.email}
+                a(href='/public/publicaciones/'+ publicacion._id+'.'+publicacion.extension , rel="nofollow" download class="input_group margin_left_auto enlace margin_top")
+                    span(class="icon-download3 input_group_add icon18 c_blue" data-toggle="tooltip"  data-placement="bottom" title="Descargar Archivo")
+                    input(type="submit" value="Descargar Archivo" class="input_group_input font18" data-toggle="tooltip"  data-placement="bottom" title="Descargar Archivo")
+
+            div(style="border-bottom: 1px dashed rgba(128, 128, 128, 0.50);" class="margin_top margin-bottom")
+
+    script(id="item-template2" type="text/x-handlebars-template")
+        div(class="img_container2 border margin_top padding_top border_radius")
+            for publicacion in publicaciones
+                a(href="/app/publicaciones/{{id}}" , class="c_blue enlace padding_left2")
+                    span(class="icon-forward font18 c_blue enlace")
+                    h2(class="display_inline_block border_bot margin-bottom c_blue" data-toggle="tooltip"  data-placement="bottom" title="Ver:  {{title}}") publicacion: 
+                        span(class="italic font_weight_initial") {{title}}
+                if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+                    span(class="icon-image c_blanco icon25 display_block")
+                    div(class="img_container2")
+                        img(src='/public/publicaciones/{{id}}.{{extension}}' , class="main_img" , id="imgm")
+                if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png")
+                    span(class="icon-tv c_blanco icon25 display_block")
+                    div(class="img_container2")
+                        video(width="640" height="480" controls)
+                            source(src='/public/publicaciones/{{id}}.{{extension}}' , , type="video/mp4")
+                if(publicacion.extension != "txt" & publicacion.extension != "docx" & publicacion.extension !="pptx" & publicacion.extension !="pdf" & publicacion.extension !="doc" & publicacion.extension != "xlsx" & publicacion.extension != "jpg" & publicacion.extension != "png" & publicacion.extension != "mp4" & publicacion.extension != "flv")
+                    span(class="icon-cross icon10 text_transparent")
+                    p(class="text_align_centerI text_transparent display_inline_block font16")  Archivo no visible &nbsp;
+                    span(class="icon-cross icon10 text_transparent display_inline_block")
+
+            div(style="border-bottom: 1px dashed rgba(128, 128, 128, 0.50);" class="margin_top margin-bottom")
+    script(src="/public/js/client.js")

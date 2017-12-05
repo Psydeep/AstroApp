@@ -1,0 +1,46 @@
+extends ../../layout.pug
+block contenido
+block titulo
+    h1 Gestión de Noticias
+block menu_usuario
+    div(class="menu_user" )
+        div(class="menu_user_container")
+            a(href="/app/" class="enlace")
+                span(class="icon-profile c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Perfil")
+            a(href="/app/documentos/new" class="padding_left enlace")
+                span(class="icon-files-empty c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nuevo Documento")
+            a(href="/app/documentos" class="padding_left enlace")
+                span(class="icon-books c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis Documentos")
+            a(href="/app/publicaciones/new" class="padding_left enlace")
+                span(class="icon-new-tab c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nueva Noticia")
+            a(href="/app/publicaciones" class="padding_left enlace")
+                span(class="icon-newspaper c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis Noticias")
+            a(href="/app/publicaciones/mis_publicaciones" class="padding_left enlace")
+                span(class="icon-sphere c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Ver mis Noticias")
+            form(action="/logout" method="POST" class="display_inline_block padding_left")
+                button(type="submit" id="btn_inicio" value="Cerrar" class="with_30px c_blue icon-exit icon25 no_borders no_background logout" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión")
+block subtitulo1
+    p Editar Noticia
+    p(id="o")
+block subcontenido1
+    div(class="form-center b_gris")
+        p(class="c_red margin_top font16") #{error}
+        form(method="POST" action='/app/publicaciones/'+ publicacion.id +'?_method=PUT' style="margin-top:1.5em;")
+            div(class="form-grupo")
+                label(class="font-Muli light text-comun label-block") Título
+                input(type="text" name="title" placeholder="Título de la noticia" class="font-Muli form-control" value=''+ publicacion.title +'')
+            div(class="form-grupo")
+                label(class="font-Muli light text-comun label-block") Descripción
+                textarea(type="text" name="description" rows="4" cols="50" placeholder="Descripción de la noticia" class="font-Muli form-control-textarea" value=''+ publicacion.description +'')
+
+            div(class="form-grupo")
+                label(class="font-Muli light text-comun label-block") Año
+                input(type="text" name="age" placeholder="Año de la publicacion" class="font-Muli form-control" value=''+ publicacion.age +'')
+            div(class="form-grupo form-validacion")
+                p(class="font-Muli light text-comun label-block") Validación de ingreso  
+                    span(class="icon-lock margin-left icon16 azul")
+                p(class="font-Muli light text-comun label-block") Contraseña
+                input(type="password" name="password" placeholder="Contraseña" class="font-Muli form-control" required)
+            div(class="form-grupo text-right")
+                input(type="submit" value="Guardar" class="font-Muli boton")
+block _footer

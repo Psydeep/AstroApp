@@ -1,0 +1,83 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0")
+    title TeleCable - Valencia
+    link(rel="stylesheet" href="/public/Stylesheet.css")
+    link(rel="stylesheet" href="/public/fonts.css")
+    link(rel="shortcut icon" href="/public/tl.ico" type="image/x-icon")
+    script(src="/public/js/jquery.min.js" type="text/javascript")
+    script(src="/public/js/main.js" type="text/javascript")
+    script(src="/public/js/bootstrap.js" type="text/javascript")
+    script(src="/public/js/bootstrap.min.js" type="text/javascript")
+    script(src="/public/js/push.min.js" type="text/javascript")
+    script(src="/socket.io/socket.io.js" type="text/javascript")
+    script(src="/public/js/handlebars.js" type="text/javascript")
+  body
+
+    div(id="contenedor")
+        header
+            div(class="menubar")
+              a(href="/" class="sombra-texto "): div(class="logoimage")
+                span(class="icon-menu")
+            div
+              div 
+            nav
+                ul
+                    li(id="Logo")
+                        a(href="/" class="sombra-texto "): div(class="logoimage")
+                    li
+                        a(href="/" class="sombra-texto ") Inicio
+                    li
+                        a(href="/services" class="sombra-texto ") Servicios
+                    li
+                        a(href="/queries" class="sombra-texto ") Consultas
+                    li
+                        a(href="/contacts" class="sombra-texto ") Contactos
+                    li
+                        a(href="/about" class="sombra-texto ") Acerca de
+                    li(class="cerrar")
+                        a(href="#" class="sombra-texto ") Cerrar
+                        span(class="icon-cross")
+
+        div(class="login")
+            div
+            block login
+        block contenido
+        section(class="principal")
+            article(class="titulo")
+                div(class="display_inline_block with_75")
+                    block titulo
+                div(class="display_inline_block with_25")
+                    block menu_usuario
+            article(class="contenido")
+                div(class="subtitulo")
+                    block subtitulo1
+                div(class="subcontenido padding_top")
+                    block subcontenido1
+        footer(class="footer-pie")
+            div(class="pie-cabezal")
+
+                ul(style="display: table;")
+                    li(class="footer-nav")
+                        p(class="logoimage_mini")
+                    li(class="footer-nav")
+                        a(href="/" class="icon16 enlace font-Muli") Inicio
+                    li(class="footer-nav")
+                        a(href="/services" class="icon16 enlace font-Muli") Servicios
+                    li(class="footer-nav")
+                        a(href="/queries" class="icon16 enlace font-Muli") Consultas
+                    li(class="footer-nav")
+                        a(href="/contacts" class="icon16 enlace font-Muli") Contactos
+                    li(class="footer-nav")
+                        a(href="/about" class="icon16 enlace font-Muli") Acerca de
+            div(class="pie-division_1")
+                p ASTRO Telecable Valencia
+            div(class="pie-division_2")
+                div(class="display_table")
+                    p(class="font16 display_table_cell") Descarga Nuestro recorrido virtual aquí &nbsp;
+                    a(href='/public/AstroTelecableRecorrido.exe' , rel="nofollow" download class="display_table input_group  enlace")
+                        span(class="icon-download3 border_radius icon18 c_blue input_group_input") &nbsp;Descargar Archivo
+        block _footer
+    script $(document).ready(function(){ $('[data-toggle="tooltip"]').tooltip({delay: {show: 500, hide: 300}}); });

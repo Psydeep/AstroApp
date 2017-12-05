@@ -1,0 +1,35 @@
+extends ../../layout.pug
+block contenido
+block titulo
+    h1 Gestión de Noticias
+block menu_usuario
+    div(class="menu_user" )
+        div(class="menu_user_container")
+            a(href="/app/" class="enlace")
+                span(class="icon-profile c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Perfil")
+            a(href="/app/documentos/new" class="padding_left enlace")
+                span(class="icon-files-empty c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nuevo Documento")
+            a(href="/app/documentos" class="padding_left enlace")
+                span(class="icon-books c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis Documentos")
+            a(href="/app/publicaciones/new" class="padding_left enlace")
+                span(class="icon-new-tab c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Nueva Noticia")
+            a(href="/app/publicaciones" class="padding_left enlace")
+                span(class="icon-newspaper c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Mis Noticias")
+            a(href="/app/publicaciones/mis_publicaciones" class="padding_left enlace")
+                span(class="icon-sphere c_blue icon25" data-toggle="tooltip" data-placement="bottom" title="Ver mis Noticias")
+            form(action="/logout" method="POST" class="display_inline_block padding_left")
+                button(type="submit" id="btn_inicio" value="Cerrar" class="with_30px c_blue icon-exit icon25 no_borders no_background logout" data-toggle="tooltip" data-placement="bottom" title="Cerrar Sesión")
+block subtitulo1
+    p Lista de Noticias
+block subcontenido1
+    div(class="margin_top")
+        for publicacion in publicaciones
+            .white.border.tr.large-padding
+                .row
+                    .col-md-10.with90.padding_control.border_right
+                        h2=publicacion.title
+                    .col-md-2.with10
+                        form(action='/app/publicaciones/' + publicacion._id + '/edit' class="right_space display_inline_block" method="GET")
+                            input(type="submit" value=" Editar" class="b_editar boton border c_blue padding_left2")
+                        form(action='/app/publicaciones/' + publicacion._id + '?_method=DELETE' class="display_inline_block padding_left" method="POST")
+                            input(type="submit" value="  Eliminar" class="b_borrar boton border c_red padding_left2")
